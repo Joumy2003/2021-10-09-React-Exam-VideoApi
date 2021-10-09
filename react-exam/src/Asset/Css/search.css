@@ -1,0 +1,30 @@
+/* Container */
+.searchBarContainer {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 0.5%;
+}
+/* Search Input */
+.search {
+  width: 40%;
+  line-height: 40px;
+  outline: none;
+  background-color: white;
+  border: none;
+  border-radius: 5px 0px 0px 5px;
+}
+/* Search Input placeholder*/
+.search::placeholder {
+  padding-left: 5%;
+}
+/* Submit Button */
+.button {
+  width: 75px;
+  line-height: 40px;
+  color: white;
+  font-weight: 900;
+  background-color: rgb(255, 81, 0);
+  border: none;
+  transform: translateY(1px);
+  border-radius: 0px 5px 5px 0px;
+}

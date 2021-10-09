@@ -1,0 +1,61 @@
+/* NavBar */
+
+.NavBarItems {
+  display: flex;
+  margin-left: 6%;
+  margin-bottom: 1%;
+}
+.logo {
+  display: flex;
+}
+.NavBarItems h1 {
+  color: white;
+  margin: auto;
+}
+
+/* Logo */
+
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Menu */
+
+.NavBarItems ul {
+  display: flex;
+  list-style: none;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: 10%;
+  justify-content: center;
+}
+
+.NavBarItems ul li {
+  white-space: nowrap;
+  margin-right: 5%;
+}
+
+.NavBarItems a {
+  text-decoration: none;
+  color: white;
+}
+.NavBarItems a:hover {
+  color: #ff5100;
+  transition: color 0.2s linear, border-bottom 0.2s linear;
+}

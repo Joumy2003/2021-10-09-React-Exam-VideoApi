@@ -1,0 +1,35 @@
+main {
+  display: flex;
+  width: 80%;
+  height: 40%;
+  margin-left: 0.5%;
+}
+main img {
+  width: 14vw;
+  height: 22vw;
+}
+main .content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1%;
+  color: white;
+  justify-content: space-evenly;
+}
+main .content p,
+main .content h2 {
+  margin-bottom: 1%;
+  margin-left: 2%;
+}
+
+.firstInfo {
+  display: flex;
+}
+.plot {
+  font-size: 1.1em;
+}
+
+/* footerContent */
+
+.footerContent {
+  display: flex;
+}

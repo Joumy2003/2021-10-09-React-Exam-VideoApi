@@ -1,0 +1,37 @@
+.MovieContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0.5%;
+}
+
+.Movie {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+}
+.Movie img:hover {
+  transition: transform 0.5s;
+  transform: scale(1.1, 1.1);
+  border: 1px solid orange;
+  box-shadow: 0px 0px 3px orange;
+}
+
+.Movie img {
+  height: 220px;
+  width: 150px;
+  transition: transform 0.5s;
+}
+
+.Movie h3 {
+  font-size: 0.7em;
+  margin-top: 10%;
+  width: 150px;
+  color: white;
+}
+.Movie:hover h3 {
+  transition: transform 0.5s;
+  transform: scale(1.1, 1.1);
+}

@@ -1,0 +1,9 @@
+.InConstruction {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+.InConstruction h2 {
+  color: white;
+  margin: auto;
+}
