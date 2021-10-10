@@ -29,16 +29,30 @@ export default function Movies(props) {
     getData(Query);
   }, [Query]);
 
+  // Set imdbID 
   const ClickHandler = (event) => {
     setImdbID(event.target.title);
+    let grpContainer = event.target.parentElement.parentElement;
+    console.log(event.target.parentElement.parentElement);
+
+    // Reset not selected movies
+    for(let j=0;j<grpContainer.childNodes.length;j++)
+    {
+        
+        grpContainer.childNodes[j].firstChild.className="img";
+    }
+
+
+    event.target.className="selectedMovie";
     console.log(event.target);
   };
 
+  // Display search list result
   return (
     <div className="MovieContainer">
       {movies.map(({ Poster, Title, imdbID }) => (
         <div key={imdbID} className="Movie">
-          <img
+          <img className="img"
             src={Poster}
             alt="movie"
             title={imdbID}
