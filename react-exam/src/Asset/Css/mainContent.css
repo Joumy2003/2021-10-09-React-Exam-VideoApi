@@ -1,12 +1,12 @@
 main {
   display: flex;
   width: 80%;
-  height: 40%;
+  height: 30%;
   margin-left: 0.5%;
 }
 main img {
-  width: 14vw;
-  height: 22vw;
+  width: 11vw;
+  height: 18vw;
 }
 main .content {
   display: flex;
@@ -25,7 +25,7 @@ main .content h2 {
   display: flex;
 }
 .plot {
-  font-size: 1.1em;
+  
 }
 
 /* footerContent */

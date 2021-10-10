@@ -1,11 +1,12 @@
 import { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import { ContentContext } from "../Components/Search/QueryContext";
+import { ContentContext,QueryContext } from "../Components/Search/QueryContext";
 import "../Asset/Css/mainContent.css";
 export default function MainContent() {
   // Movie Hook
   const [FocusedMovies, setFocusedMovie] = useState([]);
   const { ImdbID, setImdbID } = useContext(ContentContext);
+  const { Query, setQuery } = useContext(QueryContext);
   // Api request
   const getData = async (ImdbID) => {
     const movieResponse = await axios
@@ -19,7 +20,7 @@ export default function MainContent() {
 
   // Hook
   useEffect(() => {
-    console.log("new useEffect ran");
+    console.log("useEffect getData(ImdbID) ran");
     getData(ImdbID);
   }, [ImdbID]);
 

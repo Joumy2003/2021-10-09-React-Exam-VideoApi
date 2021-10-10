@@ -4,18 +4,22 @@ import { useContext } from "react";
 // Import CSS
 import "../../Asset/Css/search.css";
 // Import QueryContect Component
-import { QueryContext } from "./QueryContext";
+import { QueryContext, } from "./QueryContext";
 
 const SearchBox = (props) => {
-  // Query Hook - useContext
-
+  // Hook - useContext
   const { Query, setQuery } = useContext(QueryContext);
+
+
   return (
     <form
       className="searchBarContainer"
       onSubmit={(event) => {
         event.preventDefault();
+        // Get Query
         setQuery(event.target[0].value);
+        // Empty input
+        event.target[0].value="";
         console.log("onSubmit query is : " + Query);
       }}
     >
