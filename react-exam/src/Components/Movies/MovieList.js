@@ -7,15 +7,23 @@ import leftArrow from "../../Asset/Images/LeftArrow.png";
 export default function Movies(props) {
   //Hooks
   const [movies, setMovies] = useState([]);
+  const [page,setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState();
   const { Query, setQuery } = useContext(QueryContext);
   const { ImdbID, setImdbID } = useContext(ContentContext);
   // Api request
   const getData = async (Query) => {
+    
     const response = await axios
-      .get("https://omdbapi.com/?s=" + Query + "&apikey=8c23acbc")
+      .get("https://omdbapi.com/?s=" + Query + "&apikey=8c23acbc" + "&page=" + page)
       .then((result) => {
         console.log(result.data.Search);
         console.log("Movie query is : " + Query);
+        console.log(result);
+        console.log(result.data.totalResults)
+        setTotalPages(Math.ceil(result.data.totalResults/10));
+        console.log(totalPages);
+        console.log("page(s):"+ page);
         
         // if ok
         if (result.data.Search) {
@@ -55,6 +63,12 @@ export default function Movies(props) {
   useEffect(() => {
     console.log("useEffect ran");
     getData(Query);
+  }, [Query, page]);
+
+   // Hook
+   useEffect(() => {
+    console.log("useEffect ran");
+    setPage(1);
   }, [Query]);
 
 
@@ -76,10 +90,30 @@ export default function Movies(props) {
     console.log(event.target);
   };
 
+
+  const pageHandler = (event) =>
+  {
+    setPage(page-1);
+    if(page == 0)
+    {
+      setPage(totalPages)
+    }
+  }
+  const pagefoward = (event) =>
+  {
+    setPage(page+1);
+    if(page > totalPages-1)
+    {
+      setPage(1)
+    }
+  }
+
   // Display search list result
   return (
+    <div className="Container">
+    <img src={leftArrow} alt="Arrow go forward" className="goBack" onClick={pageHandler}/>
     <div className="MovieContainer">
-    <img src={leftArrow} alt="Arrow go forward" className="arrows"/>
+    
       {movies.map(({ Poster, Title, imdbID, ClassName }) => (
         <div key={imdbID} className="Movie">
           <img 
@@ -92,6 +126,8 @@ export default function Movies(props) {
           <h3 className="title">{Title}</h3>
         </div>
       ))}
+    </div>
+    <img src={leftArrow} alt="Arrow go forward" className="goFoward" onClick={pagefoward}/>
     </div>
   );
 }

@@ -1,5 +1,11 @@
-.MovieContainer {
+.Container
+{
+  display: flex;
   width: 100%;
+  
+}
+.MovieContainer {
+  width: 95%;
   display: flex;
   flex-wrap: wrap;
   margin-right: 0.5%;
@@ -31,8 +37,8 @@
 }
 
 .Movie img {
-  height: 220px;
-  width: 150px;
+  height: 200px;
+  width: 130px;
   transition: transform 0.5s;
 }
 
@@ -46,8 +52,13 @@
   transition: transform 0.5s;
   transform: scale(1.1, 1.1);
 }
-.arrows
+.goBack, .goFoward
 {
   width:50px;
   height: 50px;
+  align-self: center;
+}
+.goBack
+{
+  transform:rotate(180deg)
 }
