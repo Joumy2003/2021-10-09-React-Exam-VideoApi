@@ -3,7 +3,7 @@ import "../../Asset/Css/movies.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { QueryContext, ContentContext } from "../Search/QueryContext";
-
+import leftArrow from "../../Asset/Images/LeftArrow.png";
 export default function Movies(props) {
   //Hooks
   const [movies, setMovies] = useState([]);
@@ -79,6 +79,7 @@ export default function Movies(props) {
   // Display search list result
   return (
     <div className="MovieContainer">
+    <img src={leftArrow} alt="Arrow go forward" className="arrows"/>
       {movies.map(({ Poster, Title, imdbID, ClassName }) => (
         <div key={imdbID} className="Movie">
           <img 
