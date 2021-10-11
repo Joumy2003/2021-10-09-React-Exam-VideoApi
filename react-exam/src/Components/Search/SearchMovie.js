@@ -4,11 +4,12 @@ import { useContext } from "react";
 // Import CSS
 import "../../Asset/Css/search.css";
 // Import QueryContect Component
-import { QueryContext, } from "./QueryContext";
+import { QueryContext, PageContext } from "./QueryContext";
 
 const SearchBox = (props) => {
   // Hook - useContext
   const { Query, setQuery } = useContext(QueryContext);
+  const { page, setPage } = useContext(PageContext);
 
 
   return (
@@ -18,6 +19,7 @@ const SearchBox = (props) => {
         event.preventDefault();
         // Get Query
         setQuery(event.target[0].value);
+        setPage(1);
         // Empty input
         event.target[0].value="";
         console.log("onSubmit query is : " + Query);

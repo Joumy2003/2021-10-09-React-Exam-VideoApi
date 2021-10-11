@@ -2,12 +2,12 @@ import React from "react";
 import "../../Asset/Css/movies.css";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { QueryContext, ContentContext } from "../Search/QueryContext";
+import { QueryContext, ContentContext, PageContext } from "../Search/QueryContext";
 import leftArrow from "../../Asset/Images/LeftArrow.png";
 export default function Movies(props) {
   //Hooks
   const [movies, setMovies] = useState([]);
-  const [page,setPage] = useState(1)
+  const {page,setPage} = useContext(PageContext);
   const [totalPages, setTotalPages] = useState();
   const { Query, setQuery } = useContext(QueryContext);
   const { ImdbID, setImdbID } = useContext(ContentContext);
@@ -21,16 +21,20 @@ export default function Movies(props) {
         console.log("Movie query is : " + Query);
         console.log(result);
         console.log(result.data.totalResults)
-        setTotalPages(Math.ceil(result.data.totalResults/10));
-        console.log(totalPages);
+       
+       
         console.log("page(s):"+ page);
         
-        // if ok
+        // if data exist
         if (result.data.Search) {
-          // First element is selected
+          // Select first element
           result.data.Search[0].ClassName="selectedMovie";
+          // Set states
           setImdbID(result.data.Search[0].imdbID)
           setMovies(result.data.Search);
+          setTotalPages(Math.ceil(result.data.totalResults/10));
+          console.log("total pages: " + totalPages);
+          console.log("total pages calcul: " + result.data.totalResults/10);
 
           //reset (if) after nothing found
           // Change input css
@@ -53,23 +57,19 @@ export default function Movies(props) {
           document.querySelector(".button").style.borderBottom="2px solid red";
           document.querySelector(".button").style.borderRight="2px solid red";
           document.querySelector(".button").style.borderTop="2px solid red";
-
-
         }
       });
   };
 
-  // Hook
+  // Hook - get data each time query update or page change
   useEffect(() => {
     console.log("useEffect ran");
     getData(Query);
   }, [Query, page]);
 
-   // Hook
-   useEffect(() => {
-    console.log("useEffect ran");
-    setPage(1);
-  }, [Query]);
+ 
+
+   
 
 
 
@@ -97,14 +97,16 @@ export default function Movies(props) {
     if(page == 0)
     {
       setPage(totalPages)
+      console.log("current Page:" + page)
     }
   }
   const pagefoward = (event) =>
   {
     setPage(page+1);
-    if(page > totalPages-1)
+    if(page > totalPages)
     {
       setPage(1)
+      console.log("current Page:" + page)
     }
   }
 
