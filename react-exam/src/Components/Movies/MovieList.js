@@ -21,12 +21,21 @@ export default function Movies(props) {
         console.log("Movie query is : " + Query);
         console.log(result);
         console.log(result.data.totalResults)
-       
-       
         console.log("page(s):"+ page);
+
+
+      
         
         // if data exist
         if (result.data.Search) {
+  // If poster don't exist use no Img icone;
+  result.data.Search.forEach(element => {
+    if(element.Poster=="N/A")
+    {
+      element.Poster="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"
+    }
+  });
+
           // Select first element
           result.data.Search[0].ClassName="selectedMovie";
           // Set states
@@ -43,6 +52,9 @@ export default function Movies(props) {
           document.querySelector(".search").placeholder="Enter Movie !";
           // Change button css 
           document.querySelector(".button").style.border="none";
+
+
+
         }
         // If nothing found
         if (!result.data.Search) {
@@ -57,6 +69,9 @@ export default function Movies(props) {
           document.querySelector(".button").style.borderBottom="2px solid red";
           document.querySelector(".button").style.borderRight="2px solid red";
           document.querySelector(".button").style.borderTop="2px solid red";
+
+
+          
         }
       });
   };
@@ -93,8 +108,12 @@ export default function Movies(props) {
 
   const pageHandler = (event) =>
   {
-    setPage(page-1);
-    if(page == 0)
+    if(page > 1)
+    {
+      setPage((page-1));
+    }
+    
+    if(page <= 1)
     {
       setPage(totalPages)
       console.log("current Page:" + page)
@@ -102,12 +121,18 @@ export default function Movies(props) {
   }
   const pagefoward = (event) =>
   {
-    setPage(page+1);
-    if(page > totalPages)
+
+    if(page < totalPages)
+    {
+      setPage((page+1));
+    }
+    
+    if(page >= totalPages)
     {
       setPage(1)
       console.log("current Page:" + page)
     }
+
   }
 
   // Display search list result

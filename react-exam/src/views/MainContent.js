@@ -14,8 +14,19 @@ export default function MainContent() {
       .then((result) => {
         console.log("FocusedContent result: " + result.data.Title);
         console.log("ImbdID " + ImdbID);
+        console.log("focused result below ");
+        console.log(result.data);
+         // If poster don't exist use no Img icone;
+          
+         if(result.data.Poster=="N/A")
+         {
+           result.data.Poster="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"
+         }
         setFocusedMovie(result.data);
-      });
+
+         
+          });
+      
   };
 
   // Hook
