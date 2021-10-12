@@ -2,8 +2,13 @@
 import { useState } from "react";
 import SearchMoviesBox from "./SearchMoviesBox.js";
 import MainContent from "./MainContent";
+// Import Hook
 import { ContentContext } from "../Components/Search/QueryContext";
+// Import Css
 import "../Asset/Css/home.css";
+
+
+
 export default function Home() {
   let [ImdbID, setImdbID] = useState("tt0372784");
   return (

@@ -1,7 +1,12 @@
+// Import hooks
 import { useEffect, useContext, useState } from "react";
-import axios from "axios";
 import { ContentContext,QueryContext } from "../Components/Search/QueryContext";
+// Import http client
+import axios from "axios";
+// Import CSS
 import "../Asset/Css/mainContent.css";
+
+
 export default function MainContent() {
   // Movie Hook
   const [FocusedMovies, setFocusedMovie] = useState([]);
@@ -16,8 +21,8 @@ export default function MainContent() {
         console.log("ImbdID " + ImdbID);
         console.log("focused result below ");
         console.log(result.data);
+        
          // If poster don't exist use no Img icone;
-          
          if(result.data.Poster=="N/A")
          {
            result.data.Poster="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"

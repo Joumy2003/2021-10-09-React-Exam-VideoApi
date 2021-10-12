@@ -1,9 +1,15 @@
 import React from "react";
+// Import CSS
 import "../../Asset/Css/movies.css";
+// Import hooks
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import { QueryContext, ContentContext, PageContext } from "../Search/QueryContext";
+// Import http Client
+import axios from "axios";
+// Import image
 import leftArrow from "../../Asset/Images/LeftArrow.png";
+
+
 export default function Movies(props) {
   //Hooks
   const [movies, setMovies] = useState([]);
@@ -13,7 +19,6 @@ export default function Movies(props) {
   const { ImdbID, setImdbID } = useContext(ContentContext);
   // Api request
   const getData = async (Query) => {
-    
     const response = await axios
       .get("https://omdbapi.com/?s=" + Query + "&apikey=8c23acbc" + "&page=" + page)
       .then((result) => {
@@ -23,18 +28,17 @@ export default function Movies(props) {
         console.log(result.data.totalResults)
         console.log("page(s):"+ page);
 
-
-      
-        
         // if data exist
-        if (result.data.Search) {
-  // If poster don't exist use no Img icone;
-  result.data.Search.forEach(element => {
-    if(element.Poster=="N/A")
-    {
-      element.Poster="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"
-    }
-  });
+        if (result.data.Search)
+        {
+          // If poster don't exist use no Img icone;
+          result.data.Search.forEach(element =>
+            {
+              if(element.Poster=="N/A")
+              {
+                element.Poster="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png"
+              }
+            });
 
           // Select first element
           result.data.Search[0].ClassName="selectedMovie";
@@ -45,20 +49,17 @@ export default function Movies(props) {
           console.log("total pages: " + totalPages);
           console.log("total pages calcul: " + result.data.totalResults/10);
 
-          //reset (if) after nothing found
+          // Reset (if) after nothing found
           // Change input css
           document.querySelector(".search").style.border="none";
           // Change Placeholder
           document.querySelector(".search").placeholder="Enter Movie !";
           // Change button css 
           document.querySelector(".button").style.border="none";
-
-
-
         }
         // If nothing found
-        if (!result.data.Search) {
-          
+        if (!result.data.Search)
+        {
           // Change input css
           document.querySelector(".search").style.borderTop="2px solid red";
           document.querySelector(".search").style.borderLeft="2px solid red";
@@ -69,9 +70,6 @@ export default function Movies(props) {
           document.querySelector(".button").style.borderBottom="2px solid red";
           document.querySelector(".button").style.borderRight="2px solid red";
           document.querySelector(".button").style.borderTop="2px solid red";
-
-
-          
         }
       });
   };
@@ -82,14 +80,10 @@ export default function Movies(props) {
     getData(Query);
   }, [Query, page]);
 
- 
-
-   
-
-
-
-  // Set imdbID 
-  const ClickHandler = (event) => {
+  
+  const ClickHandler = (event) =>
+  {
+    // Set imdbID -> Focused movie
     setImdbID(event.target.title);
     let grpContainer = event.target.parentElement.parentElement;
     console.log(event.target.parentElement.parentElement);
@@ -105,28 +99,30 @@ export default function Movies(props) {
     console.log(event.target);
   };
 
-
-  const pageHandler = (event) =>
+  // Pagehandler
+  const pageBack = (event) =>
   {
+    // If page > 1 => page--
     if(page > 1)
     {
       setPage((page-1));
     }
-    
+    // If page >= 1 => go to last page
     if(page <= 1)
     {
       setPage(totalPages)
       console.log("current Page:" + page)
     }
   }
+  // Pagehandler
   const pagefoward = (event) =>
   {
-
+    // If page < last page => page++
     if(page < totalPages)
     {
       setPage((page+1));
     }
-    
+    // If page >= last page => go to first page
     if(page >= totalPages)
     {
       setPage(1)
@@ -138,7 +134,7 @@ export default function Movies(props) {
   // Display search list result
   return (
     <div className="Container">
-    <img src={leftArrow} alt="Arrow go forward" className="goBack" onClick={pageHandler}/>
+    <img src={leftArrow} alt="Arrow go forward" className="goBack" onClick={pageBack}/>
     <div className="MovieContainer">
     
       {movies.map(({ Poster, Title, imdbID, ClassName }) => (

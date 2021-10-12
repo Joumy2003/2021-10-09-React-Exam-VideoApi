@@ -11,7 +11,7 @@ const SearchBox = (props) => {
   const { Query, setQuery } = useContext(QueryContext);
   const { page, setPage } = useContext(PageContext);
 
-
+  // Display SearchBar
   return (
     <form
       className="searchBarContainer"

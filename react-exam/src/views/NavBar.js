@@ -1,5 +1,6 @@
 // Import react and components
 import { MenuItems } from "../Components/NavBar/NavBarItems.js";
+//Import router
 import { Link } from "react-router-dom";
 
 // Import Logo

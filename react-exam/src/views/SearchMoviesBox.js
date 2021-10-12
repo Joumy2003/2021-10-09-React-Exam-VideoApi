@@ -1,9 +1,10 @@
+// Import React and Hooks
 import React, { useState } from "react";
-
+import { QueryContext, PageContext } from "../Components/Search/QueryContext.js";
+// Import components
 import SearchMovie from "../Components/Search/SearchMovie.js";
 import Movies from "../Components/Movies/MovieList.js";
-import { movies } from "../Components/Movies/MovieList.js";
-import { QueryContext, PageContext } from "../Components/Search/QueryContext.js";
+
 
 export default function SearchMoviesBox() {
   //Query with default movies
