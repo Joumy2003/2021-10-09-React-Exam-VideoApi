@@ -1,22 +1,23 @@
 .Container
 {
   display: flex;
-  width: 100%;
+  width: 95%;
+  margin-top: 2%;
   
 }
 .MovieContainer {
-  width: 95%;
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-right: 0.5%;
+ 
 }
 
 .Movie {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-right: 0.5%;
-  margin-left: 0.5%;
+ 
 }
 .Movie img:hover {
   transition: transform 0.5s;
@@ -37,8 +38,8 @@
 }
 
 .Movie img {
-  height: 200px;
-  width: 130px;
+  height: 150px;
+  width: 100px;
   transition: transform 0.5s;
 }
 
@@ -57,6 +58,7 @@
   width:50px;
   height: 50px;
   align-self: center;
+  margin: 1%;
 }
 .goBack
 {
